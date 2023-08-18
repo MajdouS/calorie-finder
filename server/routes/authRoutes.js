@@ -7,6 +7,7 @@ const router = express.Router();
 router.post("/register", authController.register);
 router.post("/login", authController.login);
 
+
 // Google authentication routes
 router.get(
   "/google",
@@ -16,7 +17,6 @@ router.get(
 );
 router.get(
   "/google/callback",
-  passport.authenticate("google"),
   authController.socialLogin
 );
 
@@ -24,8 +24,10 @@ router.get(
 router.get("/facebook", passport.authenticate("facebook"));
 router.get(
   "/facebook/callback",
-  passport.authenticate("facebook"),
   authController.socialLogin
 );
+
+// Logout route
+router.get("/logout", authController.logout);
 
 module.exports = router;
